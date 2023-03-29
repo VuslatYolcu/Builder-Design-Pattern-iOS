@@ -33,9 +33,9 @@ struct Toppings: OptionSet {
         self.rawValue = rawValue
     }
     
-    static let cheese = Sauces(rawValue: 1 << 0)
-    static let lettuce = Sauces(rawValue: 1 << 1)
-    static let pickles = Sauces(rawValue: 1 << 2)
+    static let cheese = Toppings(rawValue: 1 << 0)
+    static let lettuce = Toppings(rawValue: 1 << 1)
+    static let pickles = Toppings(rawValue: 1 << 2)
 }
 
 class HamburgerBuilder {
@@ -68,3 +68,20 @@ class HamburgerBuilder {
         return Hamburger(meat: meat, sauce: sauces, toppings: toppings)
     }
 }
+
+class Employee {
+    
+    func createCombo() -> Hamburger {
+        let builder = HamburgerBuilder()
+        builder.setMeat(.beef)
+        builder.addSauces([.ketchup, .mayonnaise, .mustard])
+        builder.addTopings([.cheese, .lettuce, .pickles])
+        return builder.build()
+    }
+}
+
+let employee = Employee()
+let combo = employee.createCombo()
+combo.meat
+combo.sauce
+combo.toppings
