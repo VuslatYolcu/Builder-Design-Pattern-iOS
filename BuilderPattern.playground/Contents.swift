@@ -37,3 +37,34 @@ struct Toppings: OptionSet {
     static let lettuce = Sauces(rawValue: 1 << 1)
     static let pickles = Sauces(rawValue: 1 << 2)
 }
+
+class HamburgerBuilder {
+    
+    private (set) var meat: Meat = .beef
+    private (set) var sauces: Sauces = []
+    private (set) var toppings: Toppings = []
+    
+    func setMeat(_ meat: Meat) {
+        self.meat = meat
+    }
+    
+    func addSauces(_ sauce: Sauces) {
+        sauces.insert(sauce)
+    }
+    
+    func addTopings(_ topping: Toppings) {
+        toppings.insert(topping)
+    }
+    
+    func removeSauces(_ sauce: Sauces) {
+        sauces.remove(sauce)
+    }
+    
+    func removeToppings(_ topping: Toppings) {
+        toppings.remove(topping)
+    }
+    
+    func build() -> Hamburger {
+        return Hamburger(meat: meat, sauce: sauces, toppings: toppings)
+    }
+}
